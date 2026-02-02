@@ -1,0 +1,29 @@
+/* 디자인 css */
+body {}
+#news {
+    /* 배경색 */
+    background-color:#A1CB9A;
+    /* 간격(25), 패딩 상하(15) , 좌우(30)*/
+    padding:15px 30px;
+    /* 크기 430x932 */
+    width:430px; height:932px;
+}
+/* >a, .box, >p */
+#news > * {padding-bottom:25px;}
+#news > a {
+    display:block;
+    font-size:1.25rem;
+    font-weight:600;
+}
+#news .box {}
+#news .box a {}
+#news .box a * {display: inline;}
+#news .box a h2 {
+    display:inline;
+    padding-bottom:25px;
+    font-size:1.88rem;
+    font-weight:300;
+}
+#news .box a p {font-size:0.88rem;}
+#news > p {}
+#news > p span {}
