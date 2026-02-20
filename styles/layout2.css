@@ -1,0 +1,180 @@
+#new_wrap {
+    background-color:lightblue;
+    width:1200px; margin:0 auto;
+}
+#new_wrap > h1 {
+    width:860px; margin:0 auto;
+}
+#new_wrap #new_slide_wrap {
+    background-color:aqua;
+    width:860px; margin:0 auto;
+    overflow:hidden;
+    /* absolute 부모기준설정 */
+    position:relative;
+}
+#new_wrap #new_slide_wrap .new_slides {
+    background-color:palegoldenrod;
+    /* float 적용 전 자식 높이를 인식해서 자동으로 따라오는 부모 */
+    /* float 적용 후 부유한 자식 요소들로 인해 높이 인식 불가 부모 */
+    /* (위) 문제 해결법 -> 넘친 자식 요소들 재인식시키기 */
+    overflow:hidden;
+    /* 자식 요소의 전체 너비 설정 */
+    /* width:max-content; */
+    width:calc(860px * 4);/* calc계산기함수사용, 연산자 좌우여백 필수 */
+}
+#new_wrap #new_slide_wrap .new_slides .slide {
+    border:2px solid plum;
+    width:860px; height:450px;
+    /* 실제 크기가 필요한 주요 요소(자식)한테 높이를 주면 그 부모 요소들은 자동으로 자식과 크기가 같아진다. */
+    float:left;
+}
+#new_wrap #new_slide_wrap .new_slides .slide h1 {}
+#new_wrap #new_slide_wrap .new_slides .slide a {}
+#new_wrap #new_slide_wrap .new_slides .slide1 {}
+#new_wrap #new_slide_wrap .new_slides .slide2 {}
+#new_wrap #new_slide_wrap .new_slides .slide3 {}
+#new_wrap #new_slide_wrap .new_slides .slide4 {}
+#new_wrap #new_slide_wrap .prev {
+    background-color:palegreen;
+    /* relative 현재위치기준 */
+    /* position:relative; left:50px; top:-50px; */
+    /* absolute 부모위치기준(기본부모 : body) */
+    /* 기준 부모 설정은 -> 부모 position 설정 */
+    position:absolute; left:0; top:40%;
+}
+#new_wrap #new_slide_wrap .next {
+    background-color:palegreen;
+    position:absolute; right:0; top:40%;
+}
+#new_wrap #new_slide_wrap .page {
+    background-color:papayawhip;
+    position:absolute; right:50px; bottom:50px;
+}
+#new_wrap #new_slide_wrap .page .current {}
+#new_wrap #new_slide_wrap .page .all {}
+/* 영풍문고 독자들의 선택------------------------------------------------- */
+#book_select {
+    background-color:aqua;
+    width:1084px; margin:100px auto;
+    position:relative;/* 이전, 다음 기준위치 살정(부모) */
+}
+#book_select h1 {}
+#book_select #book_slide_wrap .slide_wrap {
+    width:calc(340px * 3);/* 4 */
+    overflow:hidden;
+    margin:0 auto;
+}
+#book_select #book_slide_wrap .slide_wrap .slides {
+    width:calc(340px * 4);/* 3 */
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide {
+    width:340px; height:472px;/* 1 */
+    display:block;/* 2 */
+    float:left;
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide1 {
+    background-color:palevioletred;
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide2 {
+    background-color:powderblue;
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide3 {
+    background-color: blanchedalmond;
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide4 {
+    background-color:teal;
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .thumnail {
+    height:324px;
+    background-image:url(https://i.pinimg.com/736x/fb/59/55/fb5955e241ab908dcd159494fb8aef01.jpg);
+    background-size:340px auto;
+    background-position:center;
+    padding:30px 25px 0;
+    position:relative;
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .thumnail::after {
+    content:'';
+    display:block; width:100%; height:100%;
+    background-color:rgba(0,0,0,0.5);
+    position:absolute; left:0; top:0;
+    z-index:40;
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .thumnail p {
+    color:#fff; line-height:1.8;
+    z-index:50; position:relative;
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .book_info {
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .book_info .cover {
+    float:left; margin-right:10px; padding:15px 0 0 15px;
+    
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .book_info .cover img {width:70px;}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .book_info dl::after {
+    content:'';/* 필수 */
+    display:block;/* 크기적용 */ width:100%; height:100%; /* 크기값적용 */
+    background-color:rgba(255,255,255,0.5);/* 반투명색상 */
+    position:absolute;/* 형제 요소와 겹치기(부모 기준 설정 */ left:0; top:0;/* 위치설정 */
+    z-index:40;/* 형제관계 중첩순서 설정 */
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .book_info dl {
+    float:left; padding:15px;
+    position:relative;/* after를 위한 부모 기준 설정하기 */
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .book_info dl > * {
+    position:relative;/* z-index 설정하기 위한 준비속성 */
+        z-index:50;/* 기준 형제보다 작은값 또는 높은값 작성 */
+}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .book_info dl dt {}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .book_info dl dd {}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .book_info dl dd img {}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .book_info dl dd .score {}
+#book_select #book_slide_wrap .slide_wrap .slides .slide .book_info dl .review {}
+#book_select #book_slide_wrap .slide_wrap #bk_selc_prev,
+#book_select #book_slide_wrap .slide_wrap #bk_selc_next {position:absolute; top:40%;}
+#book_select #book_slide_wrap .slide_wrap #bk_selc_prev {left:0;}
+#book_select #book_slide_wrap .slide_wrap #bk_selc_next {right:0;}
+#book_select #book_slide_wrap .slide_wrap .pagenation {
+    background-color:pink;
+    text-align:center; padding:10px 0;
+}
+#book_select #book_slide_wrap .slide_wrap .pagenation a {
+    width:8px; height:8px; display:inline-block;
+    background-color:#aaa;
+    border-radius:50%;
+}
+#book_select #book_slide_wrap .slide_wrap .pagenation .active {
+    width:14px; height:14px;
+}
+/* 오늘의 책------------------------------------------------------------------------- */
+#today_book {
+    width:1084px;
+    background-color:pink;
+    margin:0 auto;
+    position:relative;
+}
+#today_book .title {}
+#today_book .title h1 {}
+#today_book .title .more {
+    float:left;
+    display:block;
+    position:absolute; right:0; top:0;
+}
+#today_book .contents {
+    width:calc(193 * 5);
+}
+#today_book .contents li {
+    float:left;
+    width:193px;
+    margin-right:29px;
+}
+#today_book .contents li .thumnail {}
+#today_book .contents li .thumnail img {width:100%;}
+#today_book .contents li .thumnail img {}
+#today_book .contents li .thumnail .popup {}
+#today_book .contents li .thumnail .popup > a {}
+#today_book .contents li .thumnail .popup .view_cart  {}
+#today_book .contents li .thumnail .popup .view_cart a  {}
+#today_book .contents li h2 {}
+#today_book .contents li h2 a {}
+#today_book .contents li .author{}

@@ -62,3 +62,66 @@
     * 전체 너비 300 중 천번째 열만 50을 가지고 나머지값은 나머지 열들에게 자동 분배 (열 안 내용크기에 따라 달라짐)
 * `width, height, padding` 속성은 같은 수평/수직 방향에 해당하는 열에 함께 적용됨.
     * 위 특징때문에 공통 여백 및 크기는 1행 라인에 작성
+## CSS 레이아웃 정렬 속성
+### display
+* `dispaly:inline-block` : 블록을 수평으로 나열
+    * 기본 여백 3px 발생 -> 해결법 `margin-right:-3px`
+### margin
+* `margin:상하여백 auto` : 크기가 설정된 블록 또는 인라인을 화면 가운데 배치
+### float
+* `float:left` : 형제 요소들을 왼쪽으로 순차정렬
+* `float:right` : 형제 요소들을 오른쪽으로 정렬
+    * 2개 이상 작성 시 역순으로 정렬됨
+* `float:none` : float 제거
+* `clear:both` : 이전 형제에 작성된 float 정렬해제
+### position
+* `position:relative`
+    * 태그의 기존 위치에서 상/하/좌/우로 약간의 이동이 필요할 때
+    * 자식 또는 자손요소에 absolute가 있어서 부모 기준이 필요할 때
+* `position:absolute`
+    * 부모, 형제 요소와 겹치는 디자인 특징이 필요할 때
+    * block요소에 absolute 설정 시 inline-block처럼 너비를 내용만큼 인식함 -> 
+    * 부모 후보(dl, dt)들에게 추가 position 설정 안할 시 body 기준으로 움직임
+    * `dl dt p {position:absolute}`
+* `z-index`
+    * absolute로 인해 겹쳐진 형제 요소들 사이의 중첩순서가 필요할 때
+    * 0~999 작성가능 (단위작성없이 숫자만 작성)
+    * position 속성이 없으면 z-insex 적용 불가
+## 가상 CSS 선택자 ::after, ::before
+* 시각적인 목적으로 디자인 배경, 선 등의 요소가 필요할 때 HTML태그없이 CSS만으로 디자인을 만드는 선택자
+* `부모선택자::after {}` -> 부모의 마지막 자식에 디자인 생성
+* `부모선택자::before {}` -> 부모의 첫번째 자식에 디자인 생성
+### after, before 사용 시 필수속성
+* `content:'';` -> 내용인식속성, 글자 필요한 디자인이 아닐 경우 '' 빈따옴표
+* `display, background-color, width, height`
+## 수평/수직 정렬 레이아웃 속성 flex
+### 정렬 순서
+1. 정렬하고자 하는 **2개 이상의 형제관계** 대상 체크
+    * `ul > li*5 >a` -> 형제 `li`
+    * `dl > dt + dd*4 + dt + dd*2` -> 형제 `dt, dd`
+    * `div > a*3 > span` -> 형제 `a`
+2. 체크한 1번의 부모 체크
+    * `ul > li*5 >a` -> 부모 `ul`
+    * `dl > dt + dd*4 + dt + dd*2` -> 부모 `dl`
+    * `div > a*3 > span` -> 부모 `div`
+3. 부모에 메인축/교차축 확인하며 `display:flex` 부터 명령시작하기
+### 정렬 방향과 줄바꿈 속성
+* 주의사항 : `display:flex` 먼저 작성해야함.
+* `flex-flow:row nowrap` : 기본값(메인축 수평, 줄바꿈안함)
+* `flex-flow:row wrap` : 메인축 수평, 가로크기에 따라 줄바꿈함
+* `flex-flow:column nowrap` : 메인축 수직, 줄바꿈안함
+* `flex-flow:column wrap` : 메인축 수직, 세로크기에 따라 줄바꿈함
+* **메인축이란?** 부모 안 2개 이상의 형제 정렬 방향
+* **교차축이란?** 부모 안 2개 이상의 형제 교차 방향(메인 반대축)
+### 메인축 정렬 속성
+* `justify-content `
+    * `flex-start` : 메인축이 수직이면 위쪽, 수평이면 왼쪽
+    * `flex-end` : 메인축이 수직이면 아래, 수평이면 오른쪽
+    * `space-between` : 메인축이 수직이면 위-아래 양쪽끝, 수평이면 왼쪾-오른쪽 양쪽 끝
+    * `space-around` : 메인축이 수직이면 위-아래 양쪽여백 주고 균등배치, 수평이면 왼쪽-오른쪾 양쪽여백 주고 균등배치
+    * `center` : 메인축이 수직이면 수직중앙, 수평이면 수평중앙
+### 교차축 정렬 속성
+* `align-items` : 교차축이 1줄일때
+    * `flex-start, flex-end, center` : 위 메인축과 뜻 동일
+* `align-content` : 교차축이 2줄 이상일때
+    * `flex-start, flex-end, center, space-between, space-around` 위 메인축과 뜻 동일, 값 동일
